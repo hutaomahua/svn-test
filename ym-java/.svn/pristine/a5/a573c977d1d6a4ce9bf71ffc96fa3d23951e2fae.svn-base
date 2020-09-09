@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.8.RELEASE</version>
+	</parent>
+
+	<groupId>com.lyht</groupId>
+	<artifactId>lyht</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>lyht</name>
+
+	<packaging>war</packaging>
+
+
+	<properties>
+		<!-- <thymeleaf.version>3.0.2.RELEASE</thymeleaf.version> <thymeleaf-layout-dialect.version>2.0.4</thymeleaf-layout-dialect.version> -->
+		<hutool.version>5.2.4</hutool.version>
+		<commons.fileupload.version>1.3.1</commons.fileupload.version>
+		<aliyun.core.version>4.0.6</aliyun.core.version>
+		<aliyun.dysmsapi.version>1.1.0</aliyun.dysmsapi.version>
+		<alibaba.fastjson>1.2.46</alibaba.fastjson>
+		<jackson.mapper.asl.version>1.9.4</jackson.mapper.asl.version>
+		<jackson.core.asl.version>1.9.4</jackson.core.asl.version>
+		<poi.scratchpad.version>4.1.0</poi.scratchpad.version>
+		<poi.ooxml.version>4.1.0</poi.ooxml.version>
+		<poi.ooxml.schemas.version>4.1.0</poi.ooxml.schemas.version>
+		<poi.excelant.version>4.1.0</poi.excelant.version>
+		<swagger2.version>2.9.2</swagger2.version>
+		<swagger2.ui.version>2.9.2</swagger2.ui.version>
+		<swagger2.bootstrap.ui.version>1.9.6</swagger2.bootstrap.ui.version>
+		<swagger2.annotations.version>1.5.22</swagger2.annotations.version>
+		<swagger2.models.version>1.5.22</swagger2.models.version>
+		<lombok.version>1.18.12</lombok.version>
+		<ureport.version>2.2.9</ureport.version>
+		<pinyin4j.version>2.5.0</pinyin4j.version>
+	</properties>
+
+	<dependencies>
+		<!-- springBoot的启动器 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- web Tomcat启动器 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!--添加hibernate的核心依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<!--添加redis的核心依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<!--添加mongoDB的核心依赖 <dependency> <groupId>org.springframework.boot</groupId> 
+			<artifactId>spring-boot-starter-data-mongodb</artifactId> </dependency> -->
+		<!-- spring boot 热部署 <dependency> <groupId>org.springframework.boot</groupId> 
+			<artifactId>spring-boot-devtools</artifactId> </dependency> -->
+		<!-- hutool工具 -->
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>${hutool.version}</version>
+		</dependency>
+		<!-- lombok插件 -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+		</dependency>
+		<!-- 文件上传 -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${commons.fileupload.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.documents4j</groupId>
+			<artifactId>documents4j-local</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.documents4j</groupId>
+			<artifactId>documents4j-transformer-msoffice-word</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<!-- mysql数据库驱动 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<!-- begin of aliyun sms -->
+		<dependency>
+			<groupId>com.aliyun</groupId>
+			<artifactId>aliyun-java-sdk-core</artifactId>
+			<version>${aliyun.core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.aliyun</groupId>
+			<artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+			<version>${aliyun.dysmsapi.version}</version>
+		</dependency>
+
+		<!-- Json依赖架包下载 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${alibaba.fastjson}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.mapper.asl.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>${jackson.core.asl.version}</version>
+		</dependency>
+		<!-- websocket <dependency> <groupId>org.springframework.boot</groupId> 
+			<artifactId>spring-boot-starter-websocket</artifactId> </dependency> -->
+
+		<!-- excel导入导出 -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+			<version>${poi.scratchpad.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${poi.ooxml.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>${poi.ooxml.schemas.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-excelant</artifactId>
+			<version>${poi.excelant.version}</version>
+		</dependency>
+		<!-- commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<!-- swagger2 -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger2.ui.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.xiaoymin</groupId>
+			<artifactId>swagger-bootstrap-ui</artifactId>
+			<version>${swagger2.bootstrap.ui.version}</version>
+		</dependency>
+		<!-- 防止swagger-ui.html页面触发1.5.20的警告 -->
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>${swagger2.annotations.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-models</artifactId>
+			<version>${swagger2.models.version}</version>
+		</dependency>
+
+		<!-- 第三方jar包 pinyin4j-2.5.0.jar -->
+		<dependency>
+			<groupId>pinyin4j-2.5.0</groupId>
+			<artifactId>pinyin4j-2.5.0</artifactId>
+			<version>${pinyin4j.version}</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/pinyin4j-2.5.0.jar</systemPath>
+		</dependency>
+		<!-- 二维码 -->
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>javase</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+
+
+
+		<!-- ureport2报表包 -->
+		<dependency>
+			<groupId>com.bstek.ureport</groupId>
+			<artifactId>ureport2-console</artifactId>
+			<version>${ureport.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.poi</groupId>
+					<artifactId>poi-ooxml</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.poi</groupId>
+					<artifactId>poi-scratchpad</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.poi</groupId>
+					<artifactId>poi-ooxml-schemas</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.poi</groupId>
+					<artifactId>ooxml-schemas</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.poi</groupId>
+					<artifactId>poi</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- netty-socketio <dependency> <groupId>com.corundumstudio.socketio</groupId> 
+			<artifactId>netty-socketio</artifactId> <version>1.7.13</version> </dependency> 
+			<dependency> <groupId>io.netty</groupId> <artifactId>netty-resolver</artifactId> 
+			</dependency> <dependency> <groupId>io.netty</groupId> <artifactId>netty-transport</artifactId> 
+			</dependency> <dependency> <groupId>io.socket</groupId> <artifactId>socket.io-client</artifactId> 
+			<version>1.0.0</version> </dependency> -->
+
+	</dependencies>
+	<build>
+		<finalName>lyht</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<webResources>
+						<resource>
+							<directory>${project.basedir}/lib</directory>
+							<targetPath>WEB-INF/lib/</targetPath>
+							<includes>
+								<include>**/*.jar</include>
+							</includes>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

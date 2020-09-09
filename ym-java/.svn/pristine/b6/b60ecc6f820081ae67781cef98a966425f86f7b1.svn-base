@@ -1,0 +1,136 @@
+lyht:
+  root:
+    url: https://www.lanyuhuitong.cn:72/lyht
+  file:
+    upload:
+      path: D:/Server/uploads/tuoba
+  ureport:
+    path: ${lyht.file.upload.path}/ureport/
+  cost:
+    handbook:
+      file:
+        path: ${lyht.file.upload.path}/word/云南省澜沧江托巴水电站移民户登记册.xlsx
+      qrcode:
+        path: ${lyht.file.upload.path}/word/qrcode.png
+  move:
+    file:
+      path: ${lyht.file.upload.path}/word/搬迁安置人口界定、安置方式及去向到户确认表.xlsx
+  database:
+    name: ym_test
+server:
+  port: 72
+  servlet:
+    context-path: /lyht #项目路径
+    session:
+      timeout: PT2H #设置session失效的时间是2小时
+spring:
+  servlet: 
+    multipart: #文件上传限制
+      max-request-size: 1000MB #最大请求1000MB
+      max-file-size: 100MB #单个文件最大100MB
+  resources:
+    static-locations: classpath:/static,classpath:/public,classpath:/resources,classpath:/META-INF/resources,file:${lyht.file.upload.path}
+  datasource: #mysql
+    username: ymtest
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://www.lanyuhuitong.cn:3306/${lyht.database.name}?useunicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    hikari: #hikari连接池配置
+      connection-timeout: 30000
+      auto-commit: true
+      max-lifetime: 1800000
+      pool-name: HikariCP
+      minimum-idle: 15
+      connection-test-query: SELECT 1
+      idle-timeout: 30000
+      maximum-pool-size: 30
+  jpa: #jpa配置
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+  redis: #redis配置
+    host: www.lanyuhuitong.cn
+    port: 6379
+    password: 123456
+    database: 0
+    timeout: 1000
+    jedis:
+      pool:
+        max-idle: 10
+        min-idle: 0
+        max-active: 200
+        max-wait: -1
+logging: #logback日志xml
+  config: classpath:logback-spring.xml
+iwind: #中南院--流程
+  process:
+    appid: 9D11AE48-B27F-414E-BDD7-2FF0221ED1E8 #appid
+    secret: 412033D0-CA35-4048-8CF1-504190FAEC9B #secret
+    project: #项目id
+      id: 20191209-1310-5118-45cf-db47eb515ad0
+    department: #部门id
+      id: 20191209-1603-2745-6bbe-6ace76932cb0
+    url: #前缀地址
+      prefix:  http://www.msdi-smart.top:6002
+    gettoken: #获取token
+      url: ${iwind.process.url.prefix}/GetToken?appId={appId}&secret={secret}
+    sync: #数据同步相关接口
+      post:
+        user:
+          url: ${iwind.process.url.prefix}/api/SyncData/SyncDepartmentPostSysUser
+        url: ${iwind.process.url.prefix}/api/SyncData/SyncDepartmentPost
+      user:
+        url: ${iwind.process.url.prefix}/api/SyncData/SyncUser
+    start: #流程发起接口
+      url: ${iwind.process.url.prefix}/Api/Workflow/StartWorkFlow?flowPath={flowPath}
+    getstandby:
+      url: ${iwind.process.url.prefix}/Api/Workflow/GetStandbyTask?userId={userId}&pageIndex={pageIndex}&pageSize={pageSize}&filterContent={filterContent}
+    getStepInfo:
+      url: ${iwind.process.url.prefix}Api/Workflow/GetTaskStepsById?stepId={stepId}
+    getStatus:
+      url: ${iwind.process.url.prefix}/Api/Workflow/GetTaskStepsByTaskId?taskId={taskId}
+    remove:
+      url: ${iwind.process.url.prefix}Api/Workflow/RemoveTask?taskId={taskId}
+    getjoin:
+      url: ${iwind.process.url.prefix}/Api/Workflow/GetMyJoinTask?userId={userId}&pageIndex={pageIndex}&pageSize={pageSize}&filterContent={filterContent}
+    getBackSteps:
+      url: ${iwind.process.url.prefix}Api/Workflow/GetApprovedSteps?taskId={taskId}&activitieStepId={activitieStepId}
+    operate:
+      url: ${iwind.process.url.prefix}/Api/Workflow/ProcessWorkFlow?taskId={taskId}&stepId={stepId}&backStepId={backStepId}
+    get:
+      url: ${iwind.process.url.prefix}/Api/Workflow/GetTaskById?taskId={taskId}
+    gethandled:
+      url: ${iwind.process.url.prefix}/Api/Workflow/GetHandledTask?userId={userId}&pageIndex={pageIndex}&pageSize={pageSize}&filterContent={filterContent}
+    getCurStep:
+      url: ${iwind.process.url.prefix}/Api/Workflow/GetExecutingStepByTaskId?taskId={taskId}
+    getQuantity:
+      url: ${iwind.process.url.prefix}/Api/Workflow/GetWorkFLowQuantity?userId={userId}
+    getStandbyTaskCount:
+      url: ${iwind.process.url.prefix}/Api/Workflow/GeStandbyTaskCount?userId={userId}
+    getHandledTaskCount:
+      url: ${iwind.process.url.prefix}/Api/Workflow/GetHandledTaskCount?userId={userId}
+    getMyJoinTaskCount:
+      url: ${iwind.process.url.prefix}/Api/Workflow/GetMyJoinTaskCount?userId={userId}
+    flow: #流程flowpath
+      path:
+        affirm: Zny.Workflow.智慧征地移民云平台.移民.实施管理.生产安置.生产安置人口界定及去向确认
+        protocol: Zny.Workflow.智慧征地移民云平台.移民.实施管理.协议签订.移民协议签订
+        move: Zny.Workflow.智慧征地移民云平台.移民.实施管理.搬迁安置.搬迁安置人口界定及去向确认
+        production: Zny.Workflow.智慧征地移民云平台.移民.生产安置人口界定审核
+        change: Zny.Workflow.智慧征地移民云平台.移民.实施管理.实物指标.权属人变更申请
+        land:
+          resolve: Zny.Workflow.智慧征地移民云平台.移民.实施管理.土地分解.土地分解及数据确认
+        index: Zny.Workflow.智慧征地移民云平台.移民.实施管理.实物指标.实物指标复核申请
+        paymentApply: Zny.Workflow.智慧征地移民云平台.移民.实施管理.资金兑付.移民补偿补助资金支付审批
+        paymentConfirmation: Zny.Workflow.智慧征地移民云平台.移民.实施管理.资金兑付.移民补偿补助资金支付确认审批
+        ownerVerify: Zny.Workflow.智慧征地移民云平台.移民.实施管理.实物指标.实物指标电子流程新
+        physical: Zny.Workflow.智慧征地移民云平台.移民.设计变更
+        family: Zny.Workflow.智慧征地移民云平台.实物指标.权属人复核申请
+        split:
+          household: Zny.Workflow.智慧征地移民云平台.移民.实施管理.分户.分户
+          apply: Zny.Workflow.智慧征地移民云平台.移民.实施管理.分户.分户申请
