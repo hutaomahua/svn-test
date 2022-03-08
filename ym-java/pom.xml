@@ -26,7 +26,7 @@
 		<alibaba.fastjson>1.2.46</alibaba.fastjson>
 		<jackson.mapper.asl.version>1.9.4</jackson.mapper.asl.version>
 		<jackson.core.asl.version>1.9.4</jackson.core.asl.version>
-		<poi.scratchpad.version>4.1.0</poi.scratchpad.version>
+		<poi.scratchpad.version>5.2.1</poi.scratchpad.version>
 		<poi.ooxml.version>4.1.0</poi.ooxml.version>
 		<poi.ooxml.schemas.version>4.1.0</poi.ooxml.schemas.version>
 		<poi.excelant.version>4.1.0</poi.excelant.version>
